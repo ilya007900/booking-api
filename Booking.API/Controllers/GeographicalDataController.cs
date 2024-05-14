@@ -9,10 +9,7 @@ namespace Booking.API.Controllers
 {
     public class GeographicalDataController : BaseController
     {
-        public GeographicalDataController(IMediator mediator) : base(mediator)
-        {
-
-        }
+        public GeographicalDataController(IMediator mediator) : base(mediator) { }
 
         [HttpGet("countries")]
         public Task<IReadOnlyList<GetCountriesQueryResult>> Get(CancellationToken cancellationToken)

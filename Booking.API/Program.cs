@@ -18,10 +18,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(configuration =>
     configuration
-        .RegisterServicesFromAssemblyContaining<AssemblyMarker>()
+        .RegisterServicesFromAssemblyContaining<ApplicationAssemblyMarker>()
         .AddOpenBehavior(typeof(ValidationBehavior<,>)));
 
-builder.Services.AddValidatorsFromAssemblyContaining<AssemblyMarker>();
+builder.Services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>();
 
 builder.Services.AddTransient<ICurrentDateTimeService, CurrentDateTimeService>();
 

@@ -1,6 +1,6 @@
 ﻿namespace Booking.Application;
 
-public class AssemblyMarker
+public class ApplicationAssemblyMarker
 {
     
 }

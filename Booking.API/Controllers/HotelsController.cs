@@ -11,7 +11,7 @@ namespace Booking.API.Controllers
         public HotelsController(IMediator mediator) : base(mediator) { }
 
         [HttpGet("search")]
-        public Task<IReadOnlyList<SearchHotelsQueryResult>> SearchAvailableHotels(
+        public Task<IReadOnlyList<SearchHotelsQueryResult>> Search(
             [FromQuery] int cityId,
             [FromQuery] DateTime start,
             [FromQuery] DateTime end,

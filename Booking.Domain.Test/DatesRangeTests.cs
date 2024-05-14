@@ -6,14 +6,14 @@ namespace Booking.Domain.Test;
 public class DatesRangeTests
 {
     [Test]
-    public void CanNotCreateIfFromBiggerThanTo()
+    public void CanNotCreateIfStartLaterThanEnd()
     {
-        var from = DateTime.Parse("01/10/2022");
-        var to = DateTime.Parse("01/05/2022");
+        var start = DateTime.Parse("01/10/2022");
+        var end = DateTime.Parse("01/05/2022");
 
         Assert.Throws<ArgumentException>(() =>
         {
-            _ = DatesRange.Create(from, to);
+            _ = DatesRange.Create(start, end);
         });
     }
 
@@ -27,12 +27,10 @@ public class DatesRangeTests
     [TestCase("09/01/2020", "09/30/2020")]
     public void HasIntersect(DateTime from, DateTime to)
     {
-        var fromFifthToSeventhSeptember2020 = DatesRange.Create(
-            DateTime.Parse("09/05/2020"), DateTime.Parse("09/15/2020"));
-
+        var datesRange1 = Helpers.CreateDatesRange("09/05/2020", "09/15/2020");
         var datesRange = DatesRange.Create(from, to);
 
-        var hasCommonDates = datesRange.HasIntersect(fromFifthToSeventhSeptember2020);
+        var hasCommonDates = datesRange.HasIntersect(datesRange1);
 
         Assert.That(hasCommonDates, Is.True);
     }
@@ -42,12 +40,10 @@ public class DatesRangeTests
     [TestCase("09/16/2020", "09/17/2020")]
     public void DoesNotHaveIntersect(DateTime from, DateTime to)
     {
-        var fromFifthToSeventhSeptember2020 = DatesRange.Create(
-            DateTime.Parse("09/05/2020"), DateTime.Parse("09/15/2020"));
-
+        var datesRange1 = Helpers.CreateDatesRange("09/05/2020", "09/15/2020");
         var datesRange = DatesRange.Create(from, to);
 
-        var hasCommonDates = datesRange.HasIntersect(fromFifthToSeventhSeptember2020);
+        var hasCommonDates = datesRange.HasIntersect(datesRange1);
 
         Assert.That(hasCommonDates, Is.False);
     }
