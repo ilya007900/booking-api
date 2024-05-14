@@ -34,7 +34,7 @@ public static class DataSource
             return country;
         });
 
-        return countriesFaker.Generate(number).OrderBy(x => x.Name).ToArray();
+        return countriesFaker.Generate(number).DistinctBy(x => x.Name).OrderBy(x => x.Name).ToArray();
     }
 
     private static IReadOnlyList<Hotel> GenerateHotels(int number)
